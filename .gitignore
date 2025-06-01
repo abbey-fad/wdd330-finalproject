@@ -1,0 +1,22 @@
+# Node modules folder (if you use Node.js later)
+node_modules/
+
+# Environment/configuration files that might contain sensitive info
+.env
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# VS Code settings folder
+.vscode/
+
+# Build output folders (if any)
+dist/
+build/
+
+# Optional: Mac system files
+*.swp
