@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Movie Detail</title>
+	<link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+	<header>
+		<img src="images/Movie logo.webp" alt="Movie Explorer Logo" class="logo-img" />
+		<h1>Movie Explorer</h1>
+		<nav>
+			<button id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+			<div id="nav-links" class="nav-links">
+				<a href="index.html">Home</a>
+				<a href="favorites.html">Favorites</a>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<section id="movie-detail">
+			<img id="movie-poster" src="" alt="Movie Poster" />
+			<h2 id="movie-title">Movie Title</h2>
+			<p id="movie-year">Year</p>
+			<p id="movie-synopsis">Synopsis goes here...</p>
+			<h3>Cast</h3>
+			<ul id="movie-cast"></ul>
+			<button id="watch-trailer">🎥 Watch Trailer</button>
+			<button id="add-to-favorites">★ Add to Favorites</button>
+		</section>
+	</main>
+
+	<script src="js/detail.js" type="module"></script>
+</body>
+
+</html>

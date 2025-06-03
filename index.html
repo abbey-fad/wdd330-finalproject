@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Movie Explorer</title>
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="js/main.js" type="module"></script>
+
 </head>
+
 <body>
-	
+	<header>
+		<img src="images/Movie logo.webp" alt="Movie Explorer Logo" class="logo-img" />
+		<h1>Movie Explorer</h1>
+		<nav>
+			<button id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+			<div id="nav-links" class="nav-links">
+				<a href="index.html">Home</a>
+				<a href="favorites.html">Favorites</a>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<section class="search-section">
+			<input type="text" id="searchInput" placeholder="Search for movies..." />
+		</section>
+
+		<section class="popular-movies">
+			<h2>Popular Movies</h2>
+			<div id="movie-list" class="movie-grid"></div>
+		</section>
+	</main>
+
 </body>
+
 </html>
-m
