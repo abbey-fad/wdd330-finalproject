@@ -1,4 +1,5 @@
 import { getMovieDetails } from './api.js';
+import { fetchMovieDetails } from './omdb.js';
 
 // Get movie ID from the URL
 const params = new URLSearchParams(window.location.search);
@@ -11,6 +12,7 @@ const synopsis = document.getElementById('movie-synopsis');
 const castList = document.getElementById('movie-cast');
 const trailerButton = document.getElementById('watch-trailer');
 const favButton = document.getElementById('add-to-favorites');
+const ratingList = document.getElementById('movie-ratings'); // ✅ Add this
 
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
@@ -33,7 +35,13 @@ async function loadMovieDetail() {
     title.textContent = movie.title;
     year.textContent = movie.release_date ? movie.release_date.slice(0, 4) : 'N/A';
     synopsis.textContent = movie.overview;
-
+    
+    const omdbData = await fetchMovieDetails(movie.title);
+    const omdbRatings = omdbData?.Ratings || [];
+    ratingList.innerHTML = omdbRatings.length > 0
+        ? omdbRatings.map(r => `<li>${r.Source}: ${r.Value}</li>`).join('')
+        : '<li>No ratings found from OMDb</li>';
+    
     // Display top 5 cast
     const cast = movie.credits?.cast?.slice(0, 5) || [];
     castList.innerHTML = cast.map(actor => `<li>${actor.name} as ${actor.character}</li>`).join('');
