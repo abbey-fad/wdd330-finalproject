@@ -58,6 +58,8 @@ nav button:hover {
 	padding: 1rem;
 	display: flex;
 	justify-content: center;
+	gap: 0.5rem;
+	flex-wrap: wrap;
 }
 
 .search-section input {
@@ -229,6 +231,28 @@ nav button:hover {
 .remove-favorite:hover {
 	background-color: #cc1f1a;
 }
+
+/* Style the genre dropdown */
+#genreFilter {
+	background-color: var(--card-bg);
+	/* same dark background as movie cards */
+	color: var(--text-color);
+	border: none;
+	border-radius: 5px;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	font-family: 'Merriweather', serif;
+	cursor: pointer;
+	max-width: 200px;
+	margin-left: 1rem;
+	/* spacing from search input */
+	transition: border 0.3s ease;
+}
+
+#genreFilter:hover,
+#genreFilter:focus {
+	border: 1px solid var(--accent-teal);
+	outline: none; }
 
 /* Responsive tweaks for smaller screens */
 @media (max-width: 768px) {

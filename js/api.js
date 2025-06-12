@@ -38,3 +38,10 @@ export async function getOmdbRating(title) {
     return [];
   }
 }
+
+// ✅ NEW: Fetch genres list from TMDb
+export async function fetchGenres() {
+  const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+  const data = await response.json();
+  return data.genres; // Array of { id, name }
+}

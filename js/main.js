@@ -1,8 +1,9 @@
-import { fetchPopularMovies, searchMovies } from './api.js';
+import { fetchPopularMovies, searchMovies, fetchGenres } from './api.js';
 import { createMovieCard } from './ui.js';
 
 const movieList = document.getElementById('movie-list');
 const searchInput = document.getElementById('searchInput');
+const genreFilter = document.getElementById('genreFilter');
 
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
@@ -26,6 +27,47 @@ async function loadPopularMovies() {
   }
 }
 
+// Load and populate genres in the dropdown
+async function loadGenres() {
+  try {
+    const genres = await fetchGenres();
+    genres.forEach(genre => {
+      const option = document.createElement('option');
+      option.value = genre.id;
+      option.textContent = genre.name;
+      genreFilter.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Failed to load genres:', error);
+  }
+}
+
+// Filter movies by selected genre
+genreFilter.addEventListener('change', async () => {
+  const selectedGenre = genreFilter.value;
+
+  if (selectedGenre === '') {
+    loadPopularMovies(); // Show all movies if no genre selected
+    return;
+  }
+
+  try {
+    const allMovies = await fetchPopularMovies();
+    const filtered = allMovies.filter(movie =>
+      movie.genre_ids.includes(parseInt(selectedGenre))
+    );
+
+    movieList.innerHTML = '';
+    filtered.forEach(movie => {
+      const card = createMovieCard(movie);
+      movieList.appendChild(card);
+    });
+  } catch (error) {
+    movieList.innerHTML = '<p class="error">Genre filter failed. Try again later.</p>';
+    console.error('Genre filter error:', error);
+  }
+});
+
 // Handle search input
 searchInput.addEventListener('input', async (e) => {
   const query = e.target.value.trim();
@@ -47,5 +89,6 @@ searchInput.addEventListener('input', async (e) => {
   }
 });
 
-// Initial load of popular movies
+// Initial load
+loadGenres();
 loadPopularMovies();
